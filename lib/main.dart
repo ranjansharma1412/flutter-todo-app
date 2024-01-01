@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/pages/todo_list.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,8 +10,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: TodoApp(),
+      theme: ThemeData(primarySwatch: Colors.purple),
     );
   }
 }
@@ -26,7 +29,7 @@ class _TodoAppState extends State<TodoApp> {
   int _selectedIndex = 0;
   static const TextStyle optionStyles = TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black);
   static const List<Widget> _widgetoptions = <Widget> [
-    Text('Index:0 First screen', style: optionStyles),
+    TodoList(),
     Text('Index:1 Second screen', style: optionStyles),
     Text('Index:2 Third screen', style: optionStyles),
   ];
@@ -41,12 +44,8 @@ class _TodoAppState extends State<TodoApp> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: AppBar(
-        title: const Text('All Tasks'),
-        backgroundColor: Colors.black38,
-      ),
       body: Center(
-        child: _widgetoptions.elementAt(_selectedIndex),
+        child: TodoList(),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
