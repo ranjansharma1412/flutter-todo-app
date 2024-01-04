@@ -18,11 +18,27 @@ class TodoListItem extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 18.0),
       child: Container(
         padding: EdgeInsets.all(18.0),
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.0), color: Colors.purple),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8.0), color: Colors.purple),
         child: Row(
           children: [
-            Checkbox(value: taskCompleted, onChanged: onChange, checkColor: Colors.white, fillColor: MaterialStateColor.resolveWith((states) => Colors.purpleAccent)),
-            Text('Task list', style: TextStyle(fontSize:18,color: Colors.white),)
+            Checkbox(
+              value: taskCompleted,
+              onChanged: onChange,
+              checkColor: Colors.white,
+              fillColor: MaterialStateColor.resolveWith(
+                  (states) => Colors.purpleAccent),
+              activeColor: Colors.purpleAccent,
+            ),
+            Text(
+              taskName,
+              style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                  decoration: taskCompleted
+                      ? TextDecoration.lineThrough
+                      : TextDecoration.none),
+            )
           ],
         ),
       ),
