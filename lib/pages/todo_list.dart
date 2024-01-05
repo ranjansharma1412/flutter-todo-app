@@ -44,6 +44,12 @@ class _TodoListState extends State<TodoList> {
         });
   }
 
+  void deleteTask(index) {
+    setState(() {
+      _todoList.removeAt(index);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,9 +69,11 @@ class _TodoListState extends State<TodoList> {
         itemCount: _todoList.length,
         itemBuilder: (context, index) {
           return TodoListItem(
-              taskName: _todoList[index][0],
-              taskCompleted: _todoList[index][1],
-              onChange: (newValue) => onTapCheckBox(newValue, index));
+            taskName: _todoList[index][0],
+            taskCompleted: _todoList[index][1],
+            onChange: (newValue) => onTapCheckBox(newValue, index),
+            onDeleteTask: (buildContext) => deleteTask(index),
+          );
         },
       )),
       floatingActionButton: FloatingActionButton(
